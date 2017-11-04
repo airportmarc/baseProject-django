@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = '{{cookiecutter.project_slug}}.users'
+    name = 'src.apps.users'
     verbose_name = "Users"
 
     def ready(self):
@@ -10,4 +10,7 @@ class UsersConfig(AppConfig):
             Users system checks
             Users signal registration
         """
-        pass
+        import src.apps.users.signals
+
+
+

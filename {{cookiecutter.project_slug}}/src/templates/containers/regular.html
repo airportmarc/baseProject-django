@@ -1,0 +1,21 @@
+{% extends 'app_base.html' %}
+
+{% block navigation %}
+
+        {% block navigationLeft %}
+         {% include 'navigation/side_temp.html' %}
+        {% endblock %}
+
+         <div id="page-wrapper" class="gray-bg">
+          <div class="row border-bottom">
+
+
+        {% block navigationTop %}
+          {% include 'navigation/top_temp.html' %}
+        {% endblock %}
+{% endblock %}
+
+{% block closingTags %}
+</div>
+</div>
+{% endblock %}

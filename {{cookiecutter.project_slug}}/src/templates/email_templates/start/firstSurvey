@@ -1,0 +1,20 @@
+Hey {{ firstName }},
+
+Thanks for taking the time to fill out our questionnaire. We're really excited to see that you're interested in learning more about what you can do to optimize your body and energize your life.
+Based on the information you've given us, our experts at BODZii have come up with a set of macronutrients for you to consume each day that we believe will be a fantastic starting point in kickstarting your fitness journey. Try and stick to these numbers each day, and we know you'll see improvements. 
+Here they are!
+
+
+PROTEIN: {{ protein }} grams
+CARBS: {{ carbs }} grams
+FAT: {{ fat }} grams
+
+
+If you're unsure what to do with this numbers, that's okay. We figured that might be the case. We've provided you with a couple articles to read about what these numbers are and how they can help you. If you're still unsure, please don't hesitate to book a free consultation with a coach. We'd love to help.
+
+https://www.bodzii.com/blog/2017/10/23/whats-a-macro'>https://www.bodzii.com/blog/2017/10/23/whats-a-macro
+
+https://www.bodzii.com/blog/want-to-know-more-about-flexible-dieting
+
+ https://www.bodzii.com/book-your-initial-consultation
+

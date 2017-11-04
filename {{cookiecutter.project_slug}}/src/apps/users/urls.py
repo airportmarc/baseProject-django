@@ -14,7 +14,7 @@ urlpatterns = [
         name='redirect'
     ),
     url(
-        regex=r'^(?P<username>[\w.@+-]+)/$',
+        regex=r'^(?P<pk>[\d]+)/$',
         view=views.UserDetailView.as_view(),
         name='detail'
     ),
@@ -22,5 +22,10 @@ urlpatterns = [
         regex=r'^~update/$',
         view=views.UserUpdateView.as_view(),
         name='update'
+    ),
+    url(
+        regex=r'^signup/$',
+        view=views.ClientSignup.as_view(),
+        name='client-signup'
     ),
 ]

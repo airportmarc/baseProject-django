@@ -1,0 +1,14 @@
+{% extends 'ground.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="loginColumns animated fadeInDown">
+    <div class="row">
+            <img src="{% static 'img/logo.png' %}" alt="" class='center'>
+    </div>
+    {% block innerContent %} {% endblock %}
+
+</div>
+{% endblock %}
