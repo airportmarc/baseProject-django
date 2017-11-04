@@ -10,8 +10,8 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # ({{ cookiecutter.project_slug }}/config/settings/base.py - 3 = {{ cookiecutter.project_slug }}/)
-APPS_DIR = ROOT_DIR.path('{{ cookiecutter.project_slug }}')
-
+APPS_DIR = ROOT_DIR.path('src\\apps')
+SRC_DIR_STR = str(SRC_DIR)
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
 
@@ -54,7 +54,7 @@ THIRD_PARTY_APPS = [
 # Apps specific for this project go here.
 LOCAL_APPS = [
     # custom users app
-    '{{ cookiecutter.project_slug }}.users.apps.UsersConfig',
+    'src.apps..users.apps.UsersConfig',
     # Your stuff: custom apps go here
 ]
 
@@ -76,7 +76,7 @@ MIDDLEWARE = [
 # MIGRATIONS CONFIGURATION
 # ------------------------------------------------------------------------------
 MIGRATION_MODULES = {
-    'sites': '{{ cookiecutter.project_slug }}.contrib.sites.migrations'
+    'sites': 'src.contrib.sites.migrations'
 }
 
 # DEBUG
@@ -250,13 +250,21 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Some really nice defaults
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_LOGOUT_ON_GET = True
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'src.apps.users.forms.SignupForm'
+ACCOUNT_FORMS = {'login': 'src.apps.users.loginForm.CustomLoginForm'}
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
-ACCOUNT_ADAPTER = '{{cookiecutter.project_slug}}.users.adapters.AccountAdapter'
-SOCIALACCOUNT_ADAPTER = '{{cookiecutter.project_slug}}.users.adapters.SocialAccountAdapter'
+ACCOUNT_ADAPTER = 'src.apps.users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'src.apps.users.adapters.SocialAccountAdapter'
 
 # Custom user app defaults
 # Select the correct user model
@@ -289,3 +297,14 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'builds/', # must end with slash
+        'STATS_FILE': os.path.join(SRC_DIR_STR, 'static', 'builds', 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}
